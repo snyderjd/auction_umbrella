@@ -17,6 +17,18 @@ defmodule AuctionWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/items", ItemController, only: [:index, :show, :new, :create]
+
+    # ^ defines all of the following RESTful routes by convention
+    # get "/items",         ItemController, :index
+    # get "/items/new",     ItemController, :new
+    # post "/items",        ItemController, :create
+    # get "/items/:id",     ItemController, :show
+    # get "/items/:id/edt", ItemController, :edit
+    # patch "/items/:id",   ItemController, :update
+    # put "/items/:id",     ItemController, :update
+    # delete "/items/:id",  ItemController, :delete
+
   end
 
   # Other scopes may use custom stacks.
