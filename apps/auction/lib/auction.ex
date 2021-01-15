@@ -1,8 +1,9 @@
 defmodule Auction do
-  alias Auction.Item
+  alias Auction.{Item, User}
 
   @repo Auction.Repo
 
+  # ---------- Items ----------
   def insert_item(attrs) do
     %Item{}
     |> Item.changeset(attrs)
@@ -29,6 +30,22 @@ defmodule Auction do
     |> @repo.update()
   end
 
+  def edit_item(id) do
+    get_item(id)
+    |> Item.changeset()
+  end
+
   def new_item, do: Item.changeset(%Item{})
+
+  # ---------- Users ----------
+  def get_user(id), do: @repo.get!(User, id)
+
+  def new_user, do: User.changeset_with_password(%User{})
+
+  def insert_user(params) do
+    %User{}
+    |> User.changeset_with_password(params)
+    |> @repo.insert
+  end
 
 end

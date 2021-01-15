@@ -1,0 +1,25 @@
+defmodule AuctionWeb.UserController do
+  use AuctionWeb, :controller
+
+  # Gets a user by their id and renders the show template
+  def show(conn, %{"id" => id}) do
+    user = Auction.get_user(id)
+    render(conn, "show.html", user: user)
+  end
+
+  # Creates a user changeset and passes it to the template for a new user
+  def new(conn, _params) do
+    user = Auction.new_user()
+    render(conn, "new.html", user: user)
+  end
+
+  # Takes in user params and creates a new user. If successful, redirects to the new user's
+  # detail page. If not, re-renders the new form with errors
+  def create(conn, %{"user" => user_params}) do
+    case Auction.insert_user(user_params) do
+      {:ok, user} -> redirect(conn, to: Routes.user_path(conn, :show, user))
+      {:error, user} -> render(conn, "new.html", user: user)
+    end
+  end
+
+end

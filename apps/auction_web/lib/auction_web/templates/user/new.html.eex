@@ -1,0 +1,28 @@
+<h1>User Registration</h1>
+
+<%= form_for @user, Routes.user_path(@conn, :create), fn field -> %>
+  <%= if @user.action do %>
+    <div>
+      Unfortunately, there are errors in your submission. Plase correct them below.
+    </div>
+  <% end %>
+
+  <%= label field, :username %>
+  <%= error_tag field, :username %>
+  <%= text_input field, :username %>
+
+  <%= label field, :email_address %>
+  <%= error_tag field, :email_address %>
+  <%= text_input field, :email_address %>
+
+  <%= label field, :password %>
+  <%= error_tag field, :password %>
+  <%= password_input field, :password %>
+
+  <%= label field, :password_confirmation %>
+  <%= error_tag field, :password_confirmation %>
+  <%= password_input field, :password_confirmation %>
+
+  <div><%= submit "Submit" %></div>
+
+<% end %>
