@@ -1,7 +1,14 @@
 defmodule Auction.Password do
-  import Pbkdf2, only: [hash_pwd_salt: 1]
+  import Pbkdf2
 
   def hash(password) do
     hash_pwd_salt(password)
   end
+
+  def verify_with_hash(password, hash) do
+    verify_pass(password, hash)
+  end
+
+  def dummy_verify, do: no_user_verify()
+
 end

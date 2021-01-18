@@ -16,6 +16,11 @@ defmodule AuctionWeb.Router do
   scope "/", AuctionWeb do
     pipe_through :browser
 
+    # Routes for loggin in, creating, or deleting a session
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
+    delete "/logout", SessionController, :delete
+
     get "/", PageController, :index
     resources "/users", UserController, only: [:show, :new, :create]
     resources "/items", ItemController, only: [:index, :show, :new, :create, :edit, :update]
