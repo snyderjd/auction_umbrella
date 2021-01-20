@@ -1,7 +1,10 @@
 defmodule Auction do
-  alias Auction.{Item, User, Password}
+  alias Auction.{Item, User, Password, Bid}
 
   @repo Auction.Repo
+
+  # Set of public interface functions that allow you to easily create, read, update, delete, etc
+  # without having to know about the details of the database
 
   # ---------- Items ----------
   def insert_item(attrs) do
@@ -55,6 +58,13 @@ defmodule Auction do
     else
       _ -> Password.dummy_verify
     end
+  end
+
+  # ---------- Bids ----------
+  def insert_bid(params) do
+    %Bid{}
+    |> Bid.changeset(params)
+    |> @repo.insert()
   end
 
 end
