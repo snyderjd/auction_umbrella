@@ -4,3 +4,24 @@
   <li><strong>Description:</strong> <%= @item.description %></li>
   <li><strong>Auction ends at:</strong> <%= @item.ends_at %></li>
 </ul>
+
+<%= if @current_user do %>
+  <h2>Place your bid!</h2>
+
+  <%= form_for @bid, Routes.item_bid_path(@conn, :create, @item), fn field -> %>
+    <%= if @bid.action do %>
+      <div class="alert alert-danger">
+        Unfortunately, there are errors in your submission. Please correct them below.
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= label field, :amount, "Bid amount", class: "control-label" %>
+      <%= error_tag field, :amount %>
+      <%= number_input field, :amount, class: "form-control" %>
+    </div>
+
+    <%= submit "Submit", class: "btn btn-primary"%>
+  <% end %>
+
+<% end %>

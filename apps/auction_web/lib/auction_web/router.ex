@@ -24,7 +24,9 @@ defmodule AuctionWeb.Router do
 
     get "/", PageController, :index
     resources "/users", UserController, only: [:show, :new, :create]
-    resources "/items", ItemController, only: [:index, :show, :new, :create, :edit, :update]
+    resources "/items", ItemController, only: [:index, :show, :new, :create, :edit, :update] do
+      resources "/bids", BidController, only: [:create]
+    end
 
     # ^ defines all of the following RESTful routes by convention
     # get "/items",         ItemController, :index

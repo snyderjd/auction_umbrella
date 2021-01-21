@@ -9,8 +9,9 @@ defmodule AuctionWeb.ItemController do
 
   # Returns a single item for GET to /items/:id
   def show(conn, %{"id" => id}) do
-    item = Auction.get_item(id)
-    render(conn, "show.html", item: item)
+    item = Auction.get_item_with_bids(id)
+    bid = Auction.new_bid()
+    render(conn, "show.html", item: item, bid: bid)
   end
 
   # Render form to create a new item for GET to /items/new
