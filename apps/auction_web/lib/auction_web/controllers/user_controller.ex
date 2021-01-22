@@ -5,7 +5,8 @@ defmodule AuctionWeb.UserController do
   # Gets a user by their id and renders the show template
   def show(conn, %{"id" => id}) do
     user = Auction.get_user(id)
-    render(conn, "show.html", user: user)
+    bids = Auction.get_bids_for_user(user)
+    render(conn, "show.html", user: user, bids: bids)
   end
 
   # Creates a user changeset and passes it to the template for a new user
