@@ -10,9 +10,10 @@ defmodule AuctionWeb.Application do
       # Start the Telemetry supervisor
       AuctionWeb.Telemetry,
       # Start the Endpoint (http/https)
-      AuctionWeb.Endpoint
+      AuctionWeb.Endpoint,
       # Start a worker by calling: AuctionWeb.Worker.start_link(arg)
       # {AuctionWeb.Worker, arg}
+      {Phoenix.PubSub, [adapter: Phoenix.PubSub.PG2, name: AuctionWeb.PubSub]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

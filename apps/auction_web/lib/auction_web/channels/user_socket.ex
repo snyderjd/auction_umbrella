@@ -2,6 +2,7 @@ defmodule AuctionWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
+  channel "item:*", AuctionWeb.ItemChannel
   # channel "room:*", AuctionWeb.RoomChannel
 
   # Socket params are passed from the client and can

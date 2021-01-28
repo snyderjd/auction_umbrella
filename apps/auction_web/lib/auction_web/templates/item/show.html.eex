@@ -7,11 +7,9 @@
 
 <div style="dislay: flex; flex-direction: row;">
 
-  <div style="flex: 1;">
-    <h2>Current bids</h2>
-    <%= for bid <- @item.bids do %>
-      <p><%= integer_to_currency(bid.amount) %> <em>from <%= bid.user.username %></em></p>
-    <% end %>
+  <h2>Current bids</h2>
+  <div id="bids">
+    <%= render_many(@item.bids, AuctionWeb.BidView, "bid.html") %>
   </div>
 
   <div style="flex: 1;">
