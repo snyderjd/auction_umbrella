@@ -12,6 +12,9 @@ defmodule AuctionWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    # # plug :fetch_session
+    # # plug :fetch_flash
+    # plug AuctionWeb.Authenticator
   end
 
   scope "/", AuctionWeb do
@@ -41,9 +44,11 @@ defmodule AuctionWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", AuctionWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", AuctionWeb.Api do
+    pipe_through :api
+
+    resources "/items", ItemController, only: [:index, :show]
+  end
 
   # Enables LiveDashboard only for development
   #
