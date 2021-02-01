@@ -10,7 +10,7 @@ defmodule AuctionWeb.Api.ItemController do
   # Gets a single item by its id
   def show(conn, %{"id" => id}) do
     item = Auction.get_item_with_bids(id)
-    render(conn, "show.json", item: item)
+    render(conn, "item_with_bids.json", item: item)
   end
 
 end
