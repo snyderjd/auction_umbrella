@@ -11,7 +11,8 @@ defmodule Auction.MixProject do
       lockfile: "../../mix.lock",
       elixir: "~> 1.10",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      aliases: aliases()
     ]
   end
 
@@ -34,5 +35,10 @@ defmodule Auction.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       # {:sibling_app_in_umbrella, in_umbrella: true}
     ]
+  end
+
+  # Creates and alias so running "mix test" runs all 3 of the below commands
+  def aliases do
+    [test: ["ecto.create", "ecto.migrate", "test"]]
   end
 end
