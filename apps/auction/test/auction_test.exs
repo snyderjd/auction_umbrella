@@ -2,7 +2,7 @@ defmodule AuctionTest do
   use ExUnit.Case
   alias Auction.{Item, Repo}
   import Ecto.Query
-  doctest Auction
+  doctest Auction, import: true
 
   # setup takes a block as its argument and runs that block before each and every associated test
   setup do
