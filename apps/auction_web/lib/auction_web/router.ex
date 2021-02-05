@@ -25,7 +25,7 @@ defmodule AuctionWeb.Router do
     post "/login", SessionController, :create
     delete "/logout", SessionController, :delete
 
-    get "/", PageController, :index
+    get "/", ItemController, :index
     resources "/users", UserController, only: [:show, :new, :create]
     resources "/items", ItemController, only: [:index, :show, :new, :create, :edit, :update] do
       resources "/bids", BidController, only: [:create]
